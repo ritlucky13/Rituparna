@@ -1,3 +1,4 @@
+=begin
 class UsersController < ActionController::Base
   protect_from_forgery with: :exception
   def create
@@ -9,7 +10,7 @@ class UsersController < ActionController::Base
       @user.each do |i|
         if i.username == @username && i.password == @pw
           @j = "true"
-        #else
+        else
          # @j = "false"
         end
       end
@@ -21,4 +22,23 @@ class UsersController < ActionController::Base
   end
     
 end
+=end
 
+class UsersController < ApplicationController
+    def show
+        @user = User.all
+        @u = params[:username]
+        @p = params[:password]
+        
+        @user.each do |u|
+            if u.username= @u
+                @state = u.authenticate(@p)
+            end
+            
+        end
+        
+    end
+    def create
+    
+    end
+end
